@@ -1,0 +1,25 @@
+{
+  "name": "d",
+  "version": "1.0.0",
+  "description": "ws messenger app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvanGrillo/ws-grillo-messenger.git"
+  },
+  "keywords": [
+    "node.js",
+    "ws",
+    "javascript"
+  ],
+  "author": "Evan Grillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EvanGrillo/ws-grillo-messenger/issues"
+  },
+  "homepage": "https://github.com/EvanGrillo/ws-grillo-messenger#readme"
+}
