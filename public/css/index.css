@@ -1,0 +1,193 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+    font-family: Helvetica;
+}
+
+#container {
+    background: #ffffff;
+    max-width: 800px;
+    min-height: 100vh;
+    max-height: 100vh;
+    height: 100vh;
+    margin: auto;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+}
+
+#toolbar {
+    background-color: #fcfcfc;
+    border-top: 1px solid #bdbdbd;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#toolbar svg {
+    width: 18px;
+    color:  #444;
+    height: 18px;
+    margin: 0.263em 0.5em;
+    cursor: pointer;
+}
+
+#toolbar .ql-stroke {
+    fill: none;
+    stroke: #444;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+#toolbar .ql-thin {
+    stroke-width: 1;
+}
+#toolbar .ql-snow .ql-stroke {
+    fill: none;
+    stroke: #444;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.selected .ql-stroke {
+    stroke: #06c !important;
+}
+
+#input-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 800px;
+    padding: 1em 0;
+}
+
+#text-input {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    outline: none;
+}
+
+#text-input textarea, #messenger {
+    height: auto;
+    min-height: 50px;
+    max-height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    outline: none;
+    border: none;
+    padding: 0.5em;
+    border-radius: 6px;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+#text-input:hover, #text-input:focus-within {
+    border-color: #000000;
+}
+
+#file-upload {
+    cursor: pointer;
+    margin: 0 1em;
+    height: 100%;
+}
+
+#file-upload:hover {
+    background: #bdbdbd;
+}
+
+#file-upload label, #file-upload span {
+    display: flex;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+#file-input {
+    display: none;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.file-preview {
+    text-align: right;
+    font-size: 12px;
+    overflow: scroll;
+    display: inline-block;
+    border: 1px solid #bcbcbc;
+    border-radius: 25px;
+    margin: 0.5em;
+    padding: 1em;
+}
+
+.remove {
+    cursor: pointer;
+    padding: 1em;
+}
+
+#text-input form {
+    -webkit-appearance: none;
+    margin:  0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+#send {
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #bdbdbd;
+    outline: none;
+}
+#send svg {
+    cursor: inherit;
+}
+#send:hover {
+    background: lime;
+}
+#send:disabled {
+    background: #dddddd;
+    cursor: not-allowed;
+}
+
+#msg-container {
+    padding: 0 1em;
+    max-height: 70vh;
+    height: 100%;
+    overflow: scroll;
+}
+
+.avatar {
+    background: #fcfcfc;
+    color: #000000;
+    overflow: scroll;
+    white-space: break-spaces;
+    text-decoration: underline;
+    margin-bottom: 0.5em;
+    padding: 0.5em 0;
+    font-size: 10px;
+}
+
+.msg {
+    padding: 1em 0;
+    border-bottom: 1px solid #bdbdbd;
+}
