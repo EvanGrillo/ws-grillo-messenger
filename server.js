@@ -84,6 +84,9 @@ server.on('request', (request, response) => {
     if (!(/public*/i).test(filePath)) {
         response.writeHead(404, { 'Content-Type': 'text/html' });
         response.end('<h1>404 Not Found</h1>', 'utf-8');
+    } else if ((/js*/i).test(filePath) && !(/min*/i).test(filePath)) {
+        response.writeHead(404, { 'Content-Type': 'text/html' });
+        response.end('<h1>404 Not Found</h1>', 'utf-8');
     } else {
 
         var extname = String(path.extname(filePath)).toLowerCase();
