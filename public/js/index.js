@@ -34,6 +34,14 @@ window.addEventListener('load', (e) => {
 
     });
 
+    socket.onclose = function(e) {
+        alert("Your WebSocket connection is now closed.");
+    };
+
+    socket.onError = function(e) {
+        alert("Error: ", e);
+    };
+
     socket.addEventListener('message', function (e) {
         
         var msg = JSON.parse(e.data.replace(': undefined', ''));
