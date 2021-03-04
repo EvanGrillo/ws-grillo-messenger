@@ -18,13 +18,13 @@ window.addEventListener('load', (e) => {
 
     document.querySelector('#messenger').focus();
 
-    var HOST = location.origin.replace(/^http/, 'ws')
+    var HOST = location.origin.replace(/^http/, 'ws');
     const socket = new WebSocket(HOST);
 
     socket.addEventListener('open', function (e) {
-        
+
         let msg = {
-            user: user_name,
+            user: user_name || 'Anonymous'
         }
 
         document.cookie = 'user_name=' + user_name;
@@ -35,7 +35,7 @@ window.addEventListener('load', (e) => {
     });
 
     socket.onclose = function(e) {
-        alert("Your WebSocket connection is now closed.");
+        document.body.innerHTML = "<h1 style='color:#ffffff;text-align:center;margin:50vh auto;'>Your connection closed</h1>"
     };
 
     socket.onError = function(e) {
@@ -65,6 +65,8 @@ window.addEventListener('load', (e) => {
         div.style.justifyContent = 'center';
 
         if (msg.files && msg.files.length) {
+
+            div.style.display = 'block';
 
             msg.files.forEach((file) => {
 
@@ -155,37 +157,42 @@ window.addEventListener('load', (e) => {
     document.querySelector('#file-input').addEventListener('change', (e) => {
         
         //- Assign file to prop & clear input
-        var file = document.querySelector('#file-input').files[0];
-
-        var div = document.createElement("div");
-        div.innerHTML = file.name + '<br>' + file.type;
-        div.className = 'file-preview';
-        div.height = 50;
-        div.fileName = file.name;
-        var rm = document.createElement("span");
-        rm.innerHTML = '✖';
-        rm.className = 'remove';
-        rm.addEventListener('click', rm_file_preview);
-        div.prepend(rm);
-        document.querySelector('form').appendChild(div);
+        var files = Array.from(document.querySelector('#file-input').files);
         
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            
-            var new_file = {
-                type: file.type,
-                url: reader.result,
-                name: file.name
-            };
-            window.grillo_chat.fileList.push(new_file);
-            document.querySelector('#file-input').value = '';
-            document.querySelector('#send').disabled = false;
+        files.forEach((file) => {
 
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
+            var div = document.createElement("div");
+            div.innerHTML = file.name + '<br>' + file.type;
+            div.className = 'file-preview';
+            div.height = 50;
+            div.fileName = file.name;
+            var rm = document.createElement("span");
+            rm.innerHTML = '✖';
+            rm.className = 'remove';
+            rm.addEventListener('click', rm_file_preview);
+            div.prepend(rm);
+            document.querySelector('form').appendChild(div);
+            
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                
+                var new_file = {
+                    type: file.type,
+                    url: reader.result,
+                    name: file.name
+                };
+                window.grillo_chat.fileList.push(new_file);
+                document.querySelector('#file-input').value = '';
+                document.querySelector('#send').disabled = false;
+
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+
+        });
+            
         
     });
 
