@@ -16,8 +16,11 @@ wss.on('connection', (client) => {
     if (!clientList.length || !clientList.filter((c) => c === client)[0]) {
         client._id = uuid;
         client.msgs = [];
+        client.isAlive = true;
         clientList.push(client);
     }
+
+    client.on('pong', heartbeat);
 
     client.on('message', (msg) => {
         
@@ -59,6 +62,29 @@ wss.on('connection', (client) => {
     });
 
 });
+
+wss.on('close', function close() {
+    clearInterval(interval);
+});
+
+function noop() {};
+
+const interval = setInterval(function ping() {
+
+    clientList.forEach(function each(client) {
+        if (client.isAlive === false) return client.terminate();
+  
+        client.isAlive = false;
+        client.ping(noop);
+    });
+
+}, 30000);
+
+interval
+  
+function heartbeat() {
+    this.isAlive = true;
+}
 
 function sendAll(msg) {
 

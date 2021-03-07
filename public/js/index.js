@@ -171,7 +171,7 @@ window.addEventListener('load', (e) => {
             rm.className = 'remove';
             rm.addEventListener('click', rm_file_preview);
             div.prepend(rm);
-            document.querySelector('form').appendChild(div);
+            document.querySelector('#file-preview-container').appendChild(div);
             
             var reader = new FileReader();
             reader.readAsDataURL(file);
@@ -192,6 +192,8 @@ window.addEventListener('load', (e) => {
             };
 
         });
+
+        document.querySelector('#messenger').focus();
             
         
     });
